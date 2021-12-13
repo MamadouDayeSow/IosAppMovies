@@ -47,8 +47,11 @@ struct EditMovieView: View {
                 TextField("Name movie", text : $nameMovie)
                 TextField("Director movie", text : $directorName)
                 Toggle("Watched the movie", isOn: $watched)
-                Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
-                Text("You gave this film a \(rateOfTheMovie) on 5")
+                
+                if watched {
+                    Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
+                    RatingView(rating: $rateOfTheMovie)
+                }
             }
         }
         .accentColor(.green)
