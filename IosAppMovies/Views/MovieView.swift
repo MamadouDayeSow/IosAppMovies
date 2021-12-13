@@ -57,9 +57,13 @@ struct MovieListView : View {
                 
                 List {
                     ForEach(viewModel.movies, id: \.id) { movie in
-                        
+                        var itemChangable = movie
+                        let itemBinding = Binding<Movie>(
+                            get : {itemChangable},
+                            set : {it in itemChangable = it}
+                        )
                         NavigationLink(
-                            destination: InfoMovieView(movie: movie), label: {
+                            destination: InfoMovieView(movie: itemBinding), label: {
                                 HStack{
                                     
                                     Text(movie.name)

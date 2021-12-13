@@ -9,12 +9,18 @@ import SwiftUI
 
 struct InfoMovieView: View {
     
-    @State var movie : Movie
+    var movie : Binding<Movie>
+
+   // @State var movie : Movie
 //    @State var nameMovie = ""
 //    @State var directorName = ""
 //    @State var watched = false
 //    @State var rateOfTheMovie = 0
     @EnvironmentObject var viewModel :  MovieViewmodel
+    
+    init(movie:Binding<Movie>){
+        self.movie = movie
+    }
     var body : some View {
         
         
@@ -22,13 +28,13 @@ struct InfoMovieView: View {
         VStack(alignment: .leading) {
             
                 
-                Text("Movie name: \(movie.name)")
+            Text("Movie name: \(movie.wrappedValue.name)")
                         .font(.title)
                         .bold()
                        
                     
             HStack {
-                Text("Director : \(movie.director)")
+                Text("Director : \(movie.wrappedValue.director)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
             //    Toggle("Watched the movie", isOn: self.movie.isWatched).disabled(true)
@@ -53,7 +59,7 @@ struct InfoMovieView: View {
 //                       }
         
         
-                        NavigationLink(destination: EditMovieView(movie: movie), label: {
+                    NavigationLink(destination: EditMovieView(id: movie.wrappedValue.id, name: movie.wrappedValue.name, director: movie.wrappedValue.director, isWatched: movie.wrappedValue.isWatched, rateMovie: movie.wrappedValue.rateMovie), label: {
                           Image(systemName: "square.and.pencil")
                       })
                     }
@@ -73,8 +79,8 @@ struct InfoMovieView: View {
 }
 
 
-struct MovieDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieDetailView()
-    }
-}
+//struct MovieDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MovieDetailView()
+//    }
+//}

@@ -38,13 +38,10 @@ class MovieViewmodel : ObservableObject{
         movies.append(Movie(name: name, director: director,isWatched: isWatched,rateMovie: rateMovie))
         
     }
-    func updateMovie(movie : Movie) {
-        if var m  = movies.first(where: {$0.id == movie.id}) {
+    func updateMovie(id:UUID,name : String, director : String, isWatched : Bool, rateMovie : Int) {
+        if let m  = movies.firstIndex(where: {$0.id == id}) {
             
-            m.name = movie.name
-            m.director = movie.director
-            m.isWatched = movie.isWatched
-            m.rateMovie = movie.rateMovie
+            movies[m].editMovie(name: name, director: director, isWatched: isWatched, rateMovie: rateMovie)
         }
         
        

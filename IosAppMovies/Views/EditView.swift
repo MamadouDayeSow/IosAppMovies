@@ -19,12 +19,24 @@ struct EditMovieView: View {
     
     @EnvironmentObject var viewModel :  MovieViewmodel
     @Environment(\.presentationMode) var presentationMode
-    @State var movie : Movie
-    @State private var nameMovie = ""
-    @State private var directorName = ""
+    
+    @State  var nameMovie = ""
+    @State var directorName = ""
     @State private var watched = false
     @State private var rateOfTheMovie = 0
+    var id:UUID = UUID()
     
+    
+    init(id:UUID,name : String, director : String, isWatched : Bool, rateMovie : Int){
+       
+        self.id = id
+        
+        _nameMovie = State(initialValue: name)
+        _directorName = State(initialValue: director)
+        _watched = State(initialValue: isWatched)
+        _rateOfTheMovie = State(initialValue: rateMovie)
+        
+    }
     
     var body : some View {
         
@@ -32,10 +44,10 @@ struct EditMovieView: View {
         
         Form{
             Section(header : Text("Movie information")){
-                TextField("Name movie", text : self.$nameMovie)
-                TextField("Director movie", text : self.$directorName)
-                Toggle("Watched the movie", isOn: self.$watched)
-                Stepper("Rate of the movie", value: self.$rateOfTheMovie, in: 0...5)
+                TextField("Name movie", text : $nameMovie)
+                TextField("Director movie", text : $directorName)
+                Toggle("Watched the movie", isOn: $watched)
+                Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
                 Text("You gave this film a \(rateOfTheMovie) on 5")
             }
         }
@@ -62,29 +74,16 @@ struct EditMovieView: View {
     }
     
     func editMovie() {
-//        viewModel.addMovie(name: nameMovie, director: directorName)
-//        presentationMode.wrappedValue.dismiss()
-        if var m  = viewModel.movies.first(where: {$0.id == movie.id}) {
-            
-            m.name = movie.name
-            m.director = movie.director
-            m.isWatched = movie.isWatched
-            m.rateMovie = movie.rateMovie
-        }
-//        movie.name = nameMovie
-//        movie.director = directorName
-//        movie.isWatched = watched
-//        movie.rateMovie = rateOfTheMovie
-        //viewModel.updateMovie(movie: movie)
+        viewModel.updateMovie(id : id, name: nameMovie, director: directorName, isWatched: watched, rateMovie: rateOfTheMovie)
         presentationMode.wrappedValue.dismiss()
     }
     
     
 }
 
-
-struct EditView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditView()
-    }
-}
+//
+//struct EditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditMovieView()
+//    }
+//}
