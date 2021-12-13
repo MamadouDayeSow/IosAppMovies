@@ -67,6 +67,8 @@ struct MovieListView : View {
                                 HStack{
                                     
                                     Text(movie.name)
+                                    Spacer()
+                                    RatingView(rating: itemBinding.rateMovie)
                                     
                                         
                                    
