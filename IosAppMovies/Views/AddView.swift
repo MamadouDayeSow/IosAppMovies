@@ -28,8 +28,8 @@ struct AddMovieView: View {
         
         Form{
             Section(header : Text("General information")){
-                TextField("Name movie", text : $nameMovie)
-                TextField("Director movie", text : $directorName)
+                TextField("Name movie", text : $nameMovie).foregroundColor(isNameCorrect() ? .green : .red)
+                TextField("Director movie", text : $directorName).foregroundColor(doStringContainsNumber() ? .red : .green)
                 Toggle("Watched the movie", isOn: $watched)
                
                 
@@ -69,6 +69,23 @@ struct AddMovieView: View {
         viewModel.addMovie(name: nameMovie, director: directorName,isWatched: watched,rateMovie: rateOfTheMovie)
         presentationMode.wrappedValue.dismiss()
     }
+    
+    func isNameCorrect() -> Bool{
+        if nameMovie.isEmpty {
+           return false
+        }
+        return true
+    }
+    
+    // Copy paste internet
+    func doStringContainsNumber() -> Bool{
+
+            let numberRegEx  = ".*[0-9]+.*"
+            let testCase = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
+            let containsNumber = testCase.evaluate(with: directorName)
+
+            return containsNumber
+            }
     
     
 }

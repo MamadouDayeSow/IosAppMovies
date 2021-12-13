@@ -16,6 +16,8 @@
 		D94025F7276784ED00AB8CE2 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94025F6276784ED00AB8CE2 /* AddView.swift */; };
 		D94025F92767851200AB8CE2 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94025F82767851200AB8CE2 /* MovieDetailView.swift */; };
 		D94025FB2767853500AB8CE2 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94025FA2767853500AB8CE2 /* EditView.swift */; };
+		D94025FD2767AC4B00AB8CE2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94025FC2767AC4B00AB8CE2 /* HomeView.swift */; };
+		D94025FF2767ADC200AB8CE2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94025FE2767ADC200AB8CE2 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		D94025F6276784ED00AB8CE2 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		D94025F82767851200AB8CE2 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		D94025FA2767853500AB8CE2 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		D94025FC2767AC4B00AB8CE2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D94025FE2767ADC200AB8CE2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				D94025F6276784ED00AB8CE2 /* AddView.swift */,
 				D94025F82767851200AB8CE2 /* MovieDetailView.swift */,
 				D94025FA2767853500AB8CE2 /* EditView.swift */,
+				D94025FC2767AC4B00AB8CE2 /* HomeView.swift */,
+				D94025FE2767ADC200AB8CE2 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,8 +185,10 @@
 				D94025F5276784CF00AB8CE2 /* MovieView.swift in Sources */,
 				D94025F12767836000AB8CE2 /* MovieModel.swift in Sources */,
 				D94025FB2767853500AB8CE2 /* EditView.swift in Sources */,
+				D94025FF2767ADC200AB8CE2 /* SettingsView.swift in Sources */,
 				D94025F7276784ED00AB8CE2 /* AddView.swift in Sources */,
 				D94025E027677FE000AB8CE2 /* IosAppMoviesApp.swift in Sources */,
+				D94025FD2767AC4B00AB8CE2 /* HomeView.swift in Sources */,
 				D94025F3276783EC00AB8CE2 /* MovieViewModel.swift in Sources */,
 				D94025F92767851200AB8CE2 /* MovieDetailView.swift in Sources */,
 			);

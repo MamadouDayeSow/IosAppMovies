@@ -44,8 +44,8 @@ struct EditMovieView: View {
         
         Form{
             Section(header : Text("Movie information")){
-                TextField("Name movie", text : $nameMovie)
-                TextField("Director movie", text : $directorName)
+                TextField("Name movie", text : $nameMovie).foregroundColor(isNameCorrect() ? .green : .red)
+                TextField("Director movie", text : $directorName).foregroundColor(doStringContainsNumber() ? .red : .green)
                 Toggle("Watched the movie", isOn: $watched)
                 
               
@@ -84,6 +84,22 @@ struct EditMovieView: View {
         presentationMode.wrappedValue.dismiss()
     }
     
+    func isNameCorrect() -> Bool{
+        if nameMovie.isEmpty {
+           return false
+        }
+        return true
+    }
+    
+    // Copy paste internet
+    func doStringContainsNumber() -> Bool{
+
+            let numberRegEx  = ".*[0-9]+.*"
+            let testCase = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
+            let containsNumber = testCase.evaluate(with: directorName)
+
+            return containsNumber
+            }
     
 }
 

@@ -27,14 +27,37 @@ struct MovieView: View {
             
             NavigationView {
                 
-                VStack {
-                    MovieListView()
-                        .navigationTitle("🎬 My Watchlist")
-                        .navigationBarItems(
-                        leading: EditButton(),
-                        trailing: NavigationLink("Add",destination : AddMovieView()))
+                
+               
+                    VStack {
                         
-                }
+                        
+                       // MovieListView()
+                        TabView {
+                        MovieListView()
+                            .tabItem{
+                                Image(systemName: "house")
+                                Text("Home")
+                            }
+                            
+                            AddMovieView()
+                            .tabItem{
+                                Image(systemName: "plus")
+                                Text("Add movie")
+                            }
+                            SettingsView()
+                                .tabItem{
+                                    Image(systemName: "gear")
+                                    Text("Settings")
+                                }
+                        }
+                            .navigationTitle("🎬 My Watchlist")
+                            .navigationBarItems(
+                            leading: EditButton(),
+                            trailing: NavigationLink("Add",destination : AddMovieView()))
+                            
+                    }
+                
                     
             }
             
