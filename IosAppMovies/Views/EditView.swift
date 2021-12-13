@@ -48,6 +48,9 @@ struct EditMovieView: View {
                 TextField("Director movie", text : $directorName)
                 Toggle("Watched the movie", isOn: $watched)
                 
+              
+            }
+            Section(header: Text("Rating")){
                 if watched {
                     Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
                     RatingView(rating: $rateOfTheMovie)

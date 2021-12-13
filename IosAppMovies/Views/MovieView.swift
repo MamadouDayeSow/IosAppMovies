@@ -49,7 +49,7 @@ struct MovieView: View {
 
 
 struct MovieListView : View {
-    
+    @Environment(\.editMode) private var editMode
     @EnvironmentObject var viewModel :  MovieViewmodel
     var body: some View {
 //        ZStack(alignment: .bottomTrailing) {
@@ -67,8 +67,16 @@ struct MovieListView : View {
                                 HStack{
                                     
                                     Text(movie.name)
+                                        
                                     Spacer()
-                                    RatingView(rating: itemBinding.rateMovie)
+                                    
+                                    if self.editMode?.wrappedValue != .active {
+                                        RatingView(rating: itemBinding.rateMovie)
+                                    }
+                                   
+                                        
+                                        
+                                      
                                     
                                         
                                    

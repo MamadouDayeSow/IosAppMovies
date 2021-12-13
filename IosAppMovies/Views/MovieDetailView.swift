@@ -23,32 +23,19 @@ struct InfoMovieView: View {
     }
     var body : some View {
         
-        
-        
-        VStack {
-            
+        Form{
+            Section(header : Text("General information")){
                 
-            Text("Movie name: \(movie.wrappedValue.name)")
-                        .font(.title)
-                        .bold()
-                       
-                    
-            HStack {
                 Text("Director : \(movie.wrappedValue.director)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-              
-               // if self.movie.isWatched {
-                 //   Stepper("Rate of the movie", value: self.movie.rateMovie, in: 0...5).disabled(true)
-        
-                           RatingView(rating: self.movie.rateMovie)
-                   //    }
-                        //Als watch aan is toon dan hoeveel ik deze film op 10 geef
-                        
-                    }
-            Toggle("Watched the movie", isOn: self.movie.isWatched).disabled(true)
-            .padding()
-        }
+                Toggle("Watched the movie", isOn: self.movie.isWatched).disabled(true)
+                
+                }
+            Section(header: Text("Rating")){
+                
+                    
+                RatingView(rating: self.movie.rateMovie)
+                }
+            }
         .padding()
         .toolbar {
           ToolbarItemGroup(placement: .navigationBarTrailing){
@@ -58,12 +45,44 @@ struct InfoMovieView: View {
                 })
               }
           }
-                  .navigationTitle("Information Movie")
+                  .navigationTitle("\(movie.wrappedValue.name)")
         
-    }
+            }
+        }
+        
+//        VStack {
+//
+//
+//            Text("\(movie.wrappedValue.name)")
+//                        .font(.title2)
+//                        .bold()
+//                        .multilineTextAlignment(.center)
+//                        .padding(.horizontal)
+//
+//
+//            HStack{
+//                Text("Director : \(movie.wrappedValue.director)")
+//                            .font(.subheadline)
+//                            .foregroundColor(.secondary)
+//
+//               // if self.movie.isWatched {
+//                 //   Stepper("Rate of the movie", value: self.movie.rateMovie, in: 0...5).disabled(true)
+//
+//                RatingView(rating: self.movie.rateMovie)
+//
+//                   //    }
+//                        //Als watch aan is toon dan hoeveel ik deze film op 10 geef
+//
+//                    }
+//
+//            Toggle("Watched the movie", isOn: self.movie.isWatched).disabled(true)
+//            .padding()
+//        }
+       
+//    }
     
 
-}
+//}
 
 
 //struct MovieDetailView_Previews: PreviewProvider {
