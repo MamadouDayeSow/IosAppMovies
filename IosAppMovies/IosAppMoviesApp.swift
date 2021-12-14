@@ -13,7 +13,7 @@ struct IosAppMoviesApp: App {
     @StateObject var movieViewmodel : MovieViewmodel = MovieViewmodel()
     var body: some Scene {
         WindowGroup {
-            MovieView()
+            HomeView()
                 .environmentObject(movieViewmodel)
         }
     }

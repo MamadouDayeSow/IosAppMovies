@@ -26,46 +26,52 @@ struct AddMovieView: View {
         
         
         
-        Form{
-            Section(header : Text("General information")){
-                TextField("Name movie", text : $nameMovie).foregroundColor(isNameCorrect() ? .green : .red)
-                TextField("Director movie", text : $directorName).foregroundColor(doStringContainsNumber() ? .red : .green)
-                Toggle("Watched the movie", isOn: $watched)
-               
-                
-            }
-            
-            
-            Section(header: Text("Rating")){
-                if watched {
-                    Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
-                    RatingView(rating: $rateOfTheMovie)
-                }
-            }
-        }
-        .accentColor(.green)
-        .navigationTitle("Add Movie ")
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing){
-                Button{
-                    hideKeyBoard()
-                }   label: {
-                    Image(systemName: "keyboard.chevron.compact.down")
+        ZStack {
+            Form{
+                Section(header : Text("General information")){
+                    TextField("Name movie", text : $nameMovie).foregroundColor(isNameCorrect() ? .green : .red)
+                    TextField("Director movie", text : $directorName).foregroundColor(doStringContainsNumber() ? .red : .green)
+                    Toggle("Watched the movie", isOn: $watched)
+                   
+                    
                 }
                 
-                NavigationLink(destination: MovieListView(), label: {
-                    Button(action: {saveMovie()}
-                           , label: {
-                        Text("Save")
+                
+                Section(header: Text("Rating")){
+                    if watched {
+                        Stepper("Rate of the movie", value: $rateOfTheMovie, in: 0...5)
+                        RatingView(rating: $rateOfTheMovie)
+                    }
+                }
+            }
+            .navigationTitle("Add Movie ")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+                    Button{
+                        hideKeyBoard()
+                    }   label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                    
+                    NavigationLink(destination: MovieListView(), label: {
+                        
+                            Button(action: {saveMovie()}
+                                   , label: {
+                                Text("Save")
+                            }).disabled(!isNameCorrect())
+                        
+                        
                     })
-                })
-            }
-            
+                }
+                
+        }
         }
         
     }
     
     func saveMovie() {
+        
+        
         viewModel.addMovie(name: nameMovie, director: directorName,isWatched: watched,rateMovie: rateOfTheMovie)
         presentationMode.wrappedValue.dismiss()
     }

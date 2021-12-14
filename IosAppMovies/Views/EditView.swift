@@ -70,7 +70,7 @@ struct EditMovieView: View {
                 NavigationLink(destination: MovieListView(), label: {
                     Button(action: {editMovie()}
                            , label: {
-                        Text("Save")
+                        Text("Save").disabled(!isNameCorrect())
                     })
                 })
             }

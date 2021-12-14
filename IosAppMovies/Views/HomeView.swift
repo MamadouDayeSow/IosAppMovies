@@ -11,18 +11,19 @@ struct HomeView: View {
     var body: some View {
         
         TabView {
-        MovieListView()
+            MovieView()
             .tabItem{
                 Image(systemName: "house")
                 Text("Home")
             }
             
-            AddMovieView()
-            .tabItem{
-                Image(systemName: "plus")
-                Text("Add movie")
-            }
-        }
+          
+            SettingsView()
+                .tabItem{
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+        }.background(.red)
         
        
         
@@ -31,6 +32,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(MovieViewmodel())
+        HomeView().preferredColorScheme(.light).environmentObject(MovieViewmodel()).previewInterfaceOrientation(.portrait)
     }
 }
