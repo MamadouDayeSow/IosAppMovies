@@ -20,18 +20,18 @@ struct EditMovieView: View {
     @EnvironmentObject var viewModel :  MovieViewmodel
     @Environment(\.presentationMode) var presentationMode
     
-    @State  var nameMovie = ""
+    @State  var titleMovie = ""
     @State var directorName = ""
     @State private var watched = false
     @State private var rateOfTheMovie = 0
     var id:UUID = UUID()
     
     
-    init(id:UUID,name : String, director : String, isWatched : Bool, rateMovie : Int){
+    init(id:UUID,title : String, director : String, isWatched : Bool, rateMovie : Int){
        
         self.id = id
         
-        _nameMovie = State(initialValue: name)
+        _titleMovie = State(initialValue: title)
         _directorName = State(initialValue: director)
         _watched = State(initialValue: isWatched)
         _rateOfTheMovie = State(initialValue: rateMovie)
@@ -44,7 +44,7 @@ struct EditMovieView: View {
         
         Form{
             Section(header : Text("Movie information")){
-                TextField("Name movie", text : $nameMovie).foregroundColor(isNameCorrect() ? .green : .red)
+                TextField("Name movie", text : $titleMovie).foregroundColor(isNameCorrect() ? .green : .red)
                 TextField("Director movie", text : $directorName).foregroundColor(doStringContainsNumber() ? .red : .green)
                 Toggle("Watched the movie", isOn: $watched)
                 
@@ -80,12 +80,12 @@ struct EditMovieView: View {
     }
     
     func editMovie() {
-        viewModel.updateMovie(id : id, name: nameMovie, director: directorName, isWatched: watched, rateMovie: rateOfTheMovie)
+        viewModel.updateMovie(id : id, title: titleMovie, director: directorName, isWatched: watched, rateMovie: rateOfTheMovie)
         presentationMode.wrappedValue.dismiss()
     }
     
     func isNameCorrect() -> Bool{
-        if nameMovie.isEmpty {
+        if titleMovie.isEmpty {
            return false
         }
         return true

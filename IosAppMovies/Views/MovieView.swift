@@ -62,9 +62,9 @@ struct MovieListView : View {
 //            ScrollView{
                 
                 List {
-                    ForEach(viewModel.movies, id: \.id) { movie in
+                    ForEach(viewModel.movies, id: \.self) { movie in
                         var itemChangable = movie
-                        let itemBinding = Binding<Movie>(
+                        let itemBinding = Binding<Result>(
                             get : {itemChangable},
                             set : {it in itemChangable = it}
                         )
@@ -72,7 +72,7 @@ struct MovieListView : View {
                             destination: InfoMovieView(movie: itemBinding), label: {
                                 HStack{
                                     
-                                    Text(movie.name)
+                                    Text(movie.title)
                                         
                                     Spacer()
                                     
@@ -98,6 +98,9 @@ struct MovieListView : View {
                     .onDelete(perform: viewModel.deleteMovie)
                     .onMove(perform: viewModel.moveMovie)
                 }
+                .onAppear {
+                            viewModel.fetchData()
+                        }
          //   }
 //            Menu("Menu".uppercased()){
 //                Button("Remove first", action: {viewModel.removeFirstMovie()})

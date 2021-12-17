@@ -72,7 +72,7 @@ struct AddMovieView: View {
     func saveMovie() {
         
         
-        viewModel.addMovie(name: nameMovie, director: directorName,isWatched: watched,rateMovie: rateOfTheMovie)
+        viewModel.addMovie(title : nameMovie, director: directorName,isWatched: watched,rateMovie: rateOfTheMovie)
         presentationMode.wrappedValue.dismiss()
     }
     
