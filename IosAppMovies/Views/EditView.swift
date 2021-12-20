@@ -24,10 +24,10 @@ struct EditMovieView: View {
     @State var directorName = ""
     @State private var watched = false
     @State private var rateOfTheMovie = 0
-    var id:UUID = UUID()
+    var id: Int = UUID().uuidString.hash
     
     
-    init(id:UUID,title : String, director : String, isWatched : Bool, rateMovie : Int){
+    init(id:Int,title : String, director : String, isWatched : Bool, rateMovie : Int){
        
         self.id = id
         

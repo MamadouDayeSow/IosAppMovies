@@ -22,14 +22,14 @@ class MovieViewmodel : ObservableObject{
     
     init() {
       //fetchweather()
-        //fetchData()
-        getJSON(urlString: "https://api.themoviedb.org/3/movie/popular?api_key=16f4b15461a4070a5b66226e9b61aa64&language=en-US&page=1") { (followers:Movie?) in
-            if let followers = followers {
-                for result in followers.results {
-                    print(result.title )
-                }
-            }
-        }
+        fetchData()
+//        getJSON(urlString: "https://api.themoviedb.org/3/movie/popular?api_key=16f4b15461a4070a5b66226e9b61aa64&language=en-US&page=1") { (followers:Movie?) in
+//            if let followers = followers {
+//                for result in followers.results {
+//                    print(result.title )
+//                }
+//            }
+//        }
     }
     func fetchData() {
             getJSON(urlString: "https://api.themoviedb.org/3/movie/popular?api_key=16f4b15461a4070a5b66226e9b61aa64&language=en-US&page=1") { (followers:Movie?) in
@@ -97,10 +97,10 @@ class MovieViewmodel : ObservableObject{
 //    }
     
     func addMovie(title : String, director : String, isWatched : Bool, rateMovie : Int) {
-        movies.append(Result(id : UUID(), director: director,isWatched: isWatched,rateMovie: rateMovie,title: title))
+        movies.append(Result(title: title,director: director,isWatched: isWatched,rateMovie: rateMovie))
         
     }
-    func updateMovie(id:UUID,title : String, director : String, isWatched : Bool, rateMovie : Int) {
+    func updateMovie(id:Int,title : String, director : String, isWatched : Bool, rateMovie : Int) {
         if let m  = movies.firstIndex(where: {$0.id == id}) {
             
             movies[m].editMovie(title: title, director: director, isWatched: isWatched, rateMovie: rateMovie)

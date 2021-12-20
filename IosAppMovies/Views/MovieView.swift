@@ -18,7 +18,7 @@ import SwiftUI
 struct MovieView: View {
     
     @EnvironmentObject var viewModel :  MovieViewmodel
-    
+   
     var body: some View {
         
         
@@ -57,12 +57,13 @@ struct MovieView: View {
 struct MovieListView : View {
     @Environment(\.editMode) private var editMode
     @EnvironmentObject var viewModel :  MovieViewmodel
+    //@ObservedObject var v = MovieViewmodel()
     var body: some View {
 //        ZStack(alignment: .bottomTrailing) {
 //            ScrollView{
                 
                 List {
-                    ForEach(viewModel.movies, id: \.self) { movie in
+                    ForEach(viewModel.movies, id: \.id) { movie in
                         var itemChangable = movie
                         let itemBinding = Binding<Result>(
                             get : {itemChangable},
@@ -77,7 +78,7 @@ struct MovieListView : View {
                                     Spacer()
                                     
                                     if self.editMode?.wrappedValue != .active {
-                                        RatingView(rating: itemBinding.rateMovie)
+                                        RatingView(rating: itemBinding.rateMovie ?? 0 )
                                     }
                                    
                                         
@@ -98,9 +99,9 @@ struct MovieListView : View {
                     .onDelete(perform: viewModel.deleteMovie)
                     .onMove(perform: viewModel.moveMovie)
                 }
-                .onAppear {
-                            viewModel.fetchData()
-                        }
+                //.onAppear {
+                 //          viewModel.fetchData()
+                  //    }
          //   }
 //            Menu("Menu".uppercased()){
 //                Button("Remove first", action: {viewModel.removeFirstMovie()})

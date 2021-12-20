@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
+    Binding(
+        get: { lhs.wrappedValue ?? rhs },
+        set: { lhs.wrappedValue = $0 }
+    )
+}
+
 struct InfoMovieView: View {
     
     var movie : Binding<Result>
@@ -23,24 +30,25 @@ struct InfoMovieView: View {
     }
     var body : some View {
         
+        
         Form{
             Section(header : Text("General information")){
                 
-                Text("Director : \(movie.wrappedValue.director)")
-                Toggle("Watched the movie", isOn: self.movie.isWatched).disabled(true)
+                Text("Director : \(movie.wrappedValue.director ?? "")")
+                Toggle("Watched the movie", isOn: self.movie.isWatched ?? false).disabled(true)
                 
                 }
             Section(header: Text("Rating")){
                 
                     
-                RatingView(rating: self.movie.rateMovie)
+                RatingView(rating: self.movie.rateMovie ?? 0)
                 }
             }
         .padding()
         .toolbar {
           ToolbarItemGroup(placement: .navigationBarTrailing){
   
-              NavigationLink(destination: EditMovieView(id: movie.wrappedValue.id, title: movie.wrappedValue.title, director: movie.wrappedValue.director, isWatched: movie.wrappedValue.isWatched, rateMovie: movie.wrappedValue.rateMovie), label: {
+              NavigationLink(destination: EditMovieView(id: movie.wrappedValue.id, title: movie.wrappedValue.title, director: movie.wrappedValue.director ?? "", isWatched: movie.wrappedValue.isWatched ?? false, rateMovie: movie.wrappedValue.rateMovie ?? 0 ), label: {
                     Image(systemName: "square.and.pencil")
                 })
               }
